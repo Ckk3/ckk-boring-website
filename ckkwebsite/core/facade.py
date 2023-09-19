@@ -7,5 +7,6 @@ def get_all_models():
         "works": models.Work.objects.all(),
         "projects": models.Project.objects.all(),
         "educations": models.Education.objects.all(),
-        "certificates": models.Certificate.objects.all(),
+        "awards": models.Award.objects.all(),
+        "social_links": models.SocialLink.objects.all(),
     }

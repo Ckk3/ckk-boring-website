@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
-# Create your models here.
-
 
 class Person(models.Model):
     name = models.CharField(max_length=30)
@@ -39,7 +37,7 @@ class Project(models.Model):
         return self.name
 
 
-course_type_choices = (("bachelor", "Bachelor"), ("other", "Other"))
+course_type_choices = (("BACHELOR", "Bachelor"), ("OTHER", "Other"))
 
 
 class Education(models.Model):
@@ -56,19 +54,14 @@ class Education(models.Model):
         return self.course
 
 
-class Certificate(models.Model):
-    name = models.CharField(max_length=30)
-    provider = models.CharField(max_length=30)
-    year = models.IntegerField()
-
-    def __str__(self) -> str:
-        return self.name
+award_type_choices = (("AWARD", "Award"), ("CERTIFICATE", "Certificate"))
 
 
 class Award(models.Model):
     name = models.CharField(max_length=30)
     provider = models.CharField(max_length=30)
     year = models.IntegerField()
+    type = models.CharField(max_length=30, choices=award_type_choices)
 
     def __str__(self) -> str:
         return self.name

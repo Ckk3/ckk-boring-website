@@ -6,7 +6,6 @@ all_models = [
     models.Work,
     models.Project,
     models.Education,
-    models.Certificate,
     models.Award,
     models.SocialLink,
 ]
