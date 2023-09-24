@@ -9,6 +9,8 @@ class Person(models.Model):
     nationality = models.CharField(max_length=30)
     languages = ArrayField(models.CharField(max_length=30))
     skills = ArrayField(models.CharField(max_length=30))
+    profile_pic = models.ImageField(upload_to="images/", null=True, blank=True)
+    pronoums = models.CharField(max_length=13, blank=True, default="he/him")
 
     def __str__(self) -> str:
         return self.name
@@ -16,6 +18,7 @@ class Person(models.Model):
 
 class Work(models.Model):
     title = models.CharField(max_length=30)
+    stack = ArrayField(models.CharField(max_length=15))
     description = models.TextField()
     company_name = models.CharField(max_length=30)
     start_date = models.DateField()
