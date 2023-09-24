@@ -4,13 +4,13 @@ body {
 	margin: 0;
 	padding: 0;
 }
-/* @media only screen {
+@media only screen {
 	body {
-		margin: 2em auto;
-		max-width: 900px;
+		margin-left: 3em;
+		margin-right: 1em;
 		color: rgb(55, 53, 47);
 	}
-} */
+}
 
 body {
 	line-height: 1.5;
