@@ -8,12 +8,28 @@ class Person(models.Model):
     birthdate = models.DateField()
     nationality = models.CharField(max_length=30)
     languages = ArrayField(models.CharField(max_length=30))
-    skills = ArrayField(models.CharField(max_length=30))
+    stack = ArrayField(models.CharField(max_length=30))
     profile_pic = models.ImageField(upload_to="images/", null=True, blank=True)
     pronoums = models.CharField(max_length=13, blank=True, default="he/him")
+    nickname = models.CharField(max_length=30, blank=True, default="")
 
     def __str__(self) -> str:
         return self.name
+
+    @property
+    def age(self):
+        from datetime import date
+
+        today = date.today()
+        return (
+            today.year
+            - self.birthdate.year
+            - ((today.month, today.day) < (self.birthdate.month, self.birthdate.day))
+        )
+
+    @property
+    def stack_text(self):
+        return str(self.stack).replace("[", "").replace("]", "").replace("'", "")
 
 
 class Work(models.Model):
@@ -22,11 +38,15 @@ class Work(models.Model):
     description = models.TextField()
     company_name = models.CharField(max_length=30)
     start_date = models.DateField()
-    end_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
     until_present = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return self.title
+        return f"{self.company_name} - {self.title}"
+
+    @property
+    def stack_text(self):
+        return str(self.stack).replace("[", "").replace("]", "").replace("'", "")
 
 
 class Project(models.Model):

@@ -6,14 +6,17 @@
     <body>
       <article id="51fa1df4-cfb8-464e-b564-f32c0d6a5c26" class="page sans">
         <header>
-          <h1 class="page-title">Luis Gustavo Mota</h1><p class="page-description"></p>
+          <h1 class="page-title">{{ person.name }}</h1><p class="page-description"></p>
         </header>
         <div class="page-body">
           <hr id="db78bdaa-af92-4064-a4ad-ecdaa0b99aaa" />
           <div id="5a8a52dd-3967-4fac-9ce5-debce0e320c3" class="column-list">
             <div id="b420b566-25ae-46d3-90c6-fa4366b2c372" style="width:74.99999999999999%" class="column">
               <p id="8d56ea08-38a6-4c1c-aaa5-fcd06705746b" class="">
-                My name is <mark class="highlight-yellow_background">Introductory paragraph.</mark>Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description.
+                <mark class="highlight-yellow_background">{{ person.name }}</mark> is a {{ person.description }}
+                {% if works.len > 0 %}
+                  Currenty working at {{ works.0.company_name }} as {{ works.0.title }}.
+                {% endif %}
               </p>
               <p id="bfcbc7f9-0d37-42c6-b924-bb76c660c849" class=""></p>
               <p id="1aa5e8d6-6cf6-4636-8d8d-a14228f8d850" class="">
@@ -81,7 +84,7 @@
             <div id="d39e7aae-412a-4d20-8aab-54a23730322d" style="width:25%" class="column">
               <p id="1472399d-070d-44ea-9d2b-967e0f8e648f" class="block-color-red_background">
                 📄 <strong>Download PDF</strong>
-              </p><h3 id="986fc38e-8cd9-4786-8835-df50ffe59eaf" class="block-color-gray_background" style="text-align: center;">Luis Gustavo Mota</h3>
+              </p><h3 id="986fc38e-8cd9-4786-8835-df50ffe59eaf" class="block-color-gray_background" style="text-align: center;">{{ person.name }}</h3>
               <figure id="b207e0d4-0fea-4305-9ea2-fff530549c89" class="image">
                 <a href="https://images.unsplash.com/photo-1532499016263-f2c3e89de9cd?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb"><img src="https://images.unsplash.com/photo-1532499016263-f2c3e89de9cd?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" /></a>
               </figure><h3 id="9d81f29d-0dfa-4160-bcec-103c35b289ff" class="block-color-gray_background"><strong>General Information</strong></h3><div id="3f64ac0c-d5d0-4d01-ba45-abbb90013b3e" class="column-list">
@@ -100,10 +103,16 @@
                   </p>
                 </div>
                 <div id="ec955809-8566-40eb-b07e-70a060221c18" style="width:62.5%" class="column">
-                  <p id="dbb0d120-b40d-4522-8189-44c9ecf6f85d" class="">Nickname</p>
+                  <p id="dbb0d120-b40d-4522-8189-44c9ecf6f85d" class="">{{ person.nickname }}</p>
                   <p id="7a40cd75-fdcc-4790-bf37-192bec7c10bd" class="">Alive 😀</p>
-                  <p id="7c60b4b1-559e-413b-8a60-9c31a3c47ee1" class="">current_work_title</p>
-                  <p id="dabe8852-1d6b-44c2-9c8d-c1eae691027c" class="">curretnstack</p>
+                  <p id="7c60b4b1-559e-413b-8a60-9c31a3c47ee1" class="">
+                  {% if works.len > 0 %}
+                    {{ works.0.title }}
+                  {% else %}
+                    -
+                  {% endif %}
+                  </p>
+                  <p id="dabe8852-1d6b-44c2-9c8d-c1eae691027c" class="">{{ person.stack_text }}</p>
                 </div>
               </div><h3 id="1aff2f3c-d0a6-49e9-98a2-3ea6a6d3866a" class="block-color-gray_background"><strong>Characteristics</strong></h3><div id="3bf72e60-85d5-4621-8da9-ea1d08c085a7" class="column-list">
                 <div id="58cf95bc-776e-4415-ab90-1c5b2e177c00" style="width:37.5%" class="column">
@@ -118,9 +127,9 @@
                   </p>
                 </div>
                 <div id="345898d0-7863-417b-9ef5-371ef1030def" style="width:62.5%" class="column">
-                  <p id="f3aeabd6-1818-435d-b713-1e22ead15f26" class="">pronoumsa</p>
-                  <p id="0e26eb2a-101c-4d82-91f8-440765d2e411" class="">personNationality</p>
-                  <p id="6ed8bd75-4780-4a3f-a237-096fce817f6a" class="">personAge</p>
+                  <p id="f3aeabd6-1818-435d-b713-1e22ead15f26" class="">{{ person.pronoums }}</p>
+                  <p id="0e26eb2a-101c-4d82-91f8-440765d2e411" class="">{{ person.nationality }}</p>
+                  <p id="6ed8bd75-4780-4a3f-a237-096fce817f6a" class="">{{ person.age }}</p>
                 </div>
               </div><h3 id="68c5181e-76ab-4ed4-9bdd-2494fe6f2870" class="block-color-gray_background">Contact Me</h3><div id="defbe308-4256-4124-81e7-2030f9931c90" class="column-list">
                 <div id="080d10c2-f995-4635-b6a6-f87c930581ab" style="width:37.5%" class="column">
@@ -133,7 +142,9 @@
                 </div>
               </div><h3 id="awards" class="block-color-gray_background">Awards</h3><div id="26d7b0eb-3880-43a8-871a-0e373b9fe7e2" class="column-list">
                 <div id="f94c2cf5-d36c-4ad9-bc90-08d3619d45fa" style="width:37.5%" class="column">
-                  <p id="6b4a1960-3283-4bb6-8214-697cb2c29131" class=""><i>awardyear</i></p>
+                  <p id="6b4a1960-3283-4bb6-8214-697cb2c29131" class="">
+                    <i>awardyear</i>
+                  </p>
                 </div>
                 <div id="ec6ce641-7bd9-4c7a-b667-6633a378fe7b" style="width:62.5%" class="column">
                   <p id="fe2f7af2-80d5-42ff-815a-4130f6abffc4" class="">award.title</p>
