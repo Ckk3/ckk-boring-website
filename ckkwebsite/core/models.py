@@ -81,8 +81,8 @@ award_type_choices = (("AWARD", "Award"), ("CERTIFICATE", "Certificate"))
 
 
 class Award(models.Model):
-    name = models.CharField(max_length=30)
-    provider = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
+    provider = models.CharField(max_length=50)
     year = models.IntegerField()
     type = models.CharField(max_length=30, choices=award_type_choices)
 
@@ -92,8 +92,8 @@ class Award(models.Model):
 
 class SocialLink(models.Model):
     name = models.CharField(max_length=30)
-    url = models.URLField(max_length=200)
-    icon = models.ImageField(upload_to="images/", null=True, blank=True)
+    username = models.CharField(max_length=30, null=True)
+    url = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self) -> str:
         return self.name

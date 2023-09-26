@@ -2,6 +2,7 @@ from core import models
 
 
 def get_all_models():
+    all_awards = models.Award.objects.all().order_by("-year")
     return {
         "person": models.Person.objects.first(),
         "works": models.Work.objects.all().order_by("-until_present", "-end_date"),
@@ -9,6 +10,7 @@ def get_all_models():
         "educations": models.Education.objects.all().order_by(
             "-until_present", "-end_date", "-start_date"
         ),
-        "awards": models.Award.objects.all().order_by("-year"),
+        "awards": all_awards.filter(type="AWARD"),
+        "certificates": all_awards.filter(type="CERTIFICATE"),
         "social_links": models.SocialLink.objects.all().order_by("name"),
     }
