@@ -42,7 +42,7 @@ class Work(models.Model):
     until_present = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return f"{self.company_name} - {self.title}"
+        return f"{self.title}, {self.company_name}"
 
     @property
     def stack_text(self):
@@ -72,9 +72,10 @@ class Education(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=False)
     until_present = models.BooleanField(default=False)
+    description = models.TextField(null=True, blank=True, default="")
 
     def __str__(self) -> str:
-        return self.course
+        return f"{self.course}, {self.institution_name}"
 
 
 award_type_choices = (("AWARD", "Award"), ("CERTIFICATE", "Certificate"))

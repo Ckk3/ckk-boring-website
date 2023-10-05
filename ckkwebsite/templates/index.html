@@ -14,7 +14,7 @@
             <div id="b420b566-25ae-46d3-90c6-fa4366b2c372" style="width:74.99999999999999%" class="column">
               <p id="8d56ea08-38a6-4c1c-aaa5-fcd06705746b" class="">
                 <mark class="highlight-yellow_background">{{ person.name }}</mark> is a {{ person.description }}
-                Currenty working at {{ works.0.company_name }} as {{ works.0.title }}.
+                Currenty working at {{ works.0.company_name }} as <i>{{ works.0.title }}</i>.
               </p>
               <p id="bfcbc7f9-0d37-42c6-b924-bb76c660c849" class=""></p>
               <p id="1aa5e8d6-6cf6-4636-8d8d-a14228f8d850" class="">
@@ -24,7 +24,7 @@
                     <div id="71febe83-94bc-4f2e-944b-1d9797b082f0" style="width:30%" class="column">
                       <nav id="a0ff764c-b489-4b9b-8ec3-fbeb5ef8785a" class="block-color-gray_background table_of_contents">
                         <div class="table_of_contents-item table_of_contents-indent-0">
-                          <a class="table_of_contents-link" href="#newer_projects">Newer Projects</a>
+                          <a class="table_of_contents-link" href="#fav_projects">Favorites Projects</a>
                         </div>
                         <div class="table_of_contents-item table_of_contents-indent-0">
                           <a class="table_of_contents-link" href="#work_experience">Work Experience</a>
@@ -36,7 +36,7 @@
                           <a class="table_of_contents-link" href="#projects">Projects</a>
                         </div>
                         <div class="table_of_contents-item table_of_contents-indent-0">
-                          <a class="table_of_contents-link" href="#certifications">Certifications</a>
+                          <a class="table_of_contents-link" href="#certificates">Certificates</a>
                         </div>
                         <div class="table_of_contents-item table_of_contents-indent-0">
                           <a class="table_of_contents-link" href="#awards">Awards</a>
@@ -50,19 +50,48 @@
                   </div>
                 </div>
               </p>
-              <hr id="c47d9144-fe83-4084-b5f8-ca55752f3913" /><h2 id="newer_projects" class="">Newer Projects</h2><div id="ed77bd4c-253f-478e-8227-cf6371c63466" class="column-list">
+              <hr id="c47d9144-fe83-4084-b5f8-ca55752f3913" /><h2 id="fav_projects" class="">Favorites Projects</h2><div id="ed77bd4c-253f-478e-8227-cf6371c63466" class="column-list">
                 <div id="be50831d-acd0-4cca-af6a-51460bee4ebc" style="width:33.333333333333336%" class="column">
                   <figure id="fabcd8dc-313c-42f6-8f6b-3e0b2fd586a2" class="image">
-                    <a href="#"><img style="width:1866px" src="{{ projects.0.image.url }}" /></a><figcaption>{{ projects.0.name }} ({{ projects.0.year }})</figcaption>
+                    <a href="#project_{{projects.0.id}}">
+                      <img style="height: 350px" src="{{ projects.0.image.url }}" />
+                      <figcaption>{{ projects.0.name }} ({{ projects.0.year }})</figcaption>
+                    </a>
                   </figure>
                 </div>
-              </div><h2 id="work_experience" class="">Work Experience</h2><h3 id="f5796042-4b58-408f-a10c-c8c28a4c5960" class="">FirstWork <i>(start-end)</i></h3><ul id="582748fb-209b-49f6-9926-caaaab003e13" class="bulleted-list">
-                <li style="list-style-type:disc">Workdescription</li>
-              </ul>
-              <hr id="b443a9f8-1f35-48f8-a6ff-b64cb46b7b20" /><h2 id="education" class="">Education</h2><h3 id="849be0b9-ce05-4d43-a31d-6c7671d05cb5" class="">FirstEducation <i>(YearEnd)</i></h3><ul id="33cab94c-2c5e-495f-afa2-5f024fe1129a" class="bulleted-list">
-                <li style="list-style-type:disc">education description</li>
-              </ul>
-              <hr id="ce5232e5-ef85-4683-a177-290cc7fd75b9" /><h2 id="projects" class="">Projects</h2><h3 id="c4e9d224-a449-4aff-8790-ee8a6302ba62" class="">newer project <i>(Year)</i></h3><ul id="eaf7638a-b62f-4a24-a597-b78fcf6a7e48" class="bulleted-list">
+              </div>
+              <h2 id="work_experience" class="">Work Experience</h2>
+              {% for wrk in works %}
+                <h3 class="" style="font-weight: normal">{{ wrk }} <i>({{ wrk.start_date|date:"M, Y" }} -
+                {% if wrk.until_present %}
+                Present)
+                {% else %}
+                {{ wrk.end_date|date:"M, Y" }})
+                {% endif %}
+                </i>
+                </h3>
+                <div class="work-description">
+                {{ wrk.description }}
+                </div>
+              {% endfor %}
+              
+              <hr id="b443a9f8-1f35-48f8-a6ff-b64cb46b7b20" style="margin-top: 2%;"/><h2 id="education" class="">Education</h2>
+              {% for edu in educations %}
+                <h3 class="" style="font-weight: normal">{{ edu }} <i>({{ edu.start_date|date:"M, Y" }} -
+                {% if edu.until_present %}
+                Present)
+                {% else %}
+                {{ edu.end_date|date:"M, Y" }})
+                {% endif %}
+                </i>
+                </h3>
+                {{ edu.course_type }}
+                <ul class="bulleted-list">
+                  <li style="list-style-type:disc">{{ edu.description }}</li>
+                </ul>
+              {% endfor %}
+
+              <hr id="ce5232e5-ef85-4683-a177-290cc7fd75b9" style="margin-top: 2%;"/><h2 id="projects" class="">Projects</h2><h3 id="c4e9d224-a449-4aff-8790-ee8a6302ba62" class="">newer project <i>(Year)</i></h3><ul id="eaf7638a-b62f-4a24-a597-b78fcf6a7e48" class="bulleted-list">
                 <li style="list-style-type:disc">project description</li>
               </ul>
               <figure id="f841e67a-52ce-443f-8db3-f1b50b4fbee2">
@@ -76,16 +105,22 @@
                 </a>
               </figure>
               <p id="4a27b12f-0f18-4e71-92ca-5ed0c3262d68" class=""></p>
-              <hr id="53e8a727-c6f7-4f4a-8e35-f17b7d78c05c" /><h2 id="certifications" class="">Certifications</h2><ul id="b2c6906d-e249-4f90-a78a-66f513e45249" class="bulleted-list">
-                <li style="list-style-type:disc">Certification name, cert Hrs, provider</li>
-              </ul>
+              
+              <hr style="margin-top: 2%;"/>
+              <h2 id="certificates" class="">Certificates</h2>
+              {% for cert in certificates %}
+                <ul class="bulleted-list">
+                  <li style="list-style-type:disc">{{ cert.name }}, {{ cert.provider }} ({{ cert.year }})</li>
+                </ul>
+              {% endfor %}
+
             </div>
             <div id="d39e7aae-412a-4d20-8aab-54a23730322d" style="width:25%" class="column">
               <p id="1472399d-070d-44ea-9d2b-967e0f8e648f" class="block-color-red_background">
                 📄 <strong>Download PDF</strong>
               </p><h3 id="986fc38e-8cd9-4786-8835-df50ffe59eaf" class="block-color-gray_background" style="text-align: center;">{{ person.name }}</h3>
               <figure id="b207e0d4-0fea-4305-9ea2-fff530549c89" class="image">
-                <a href="#"><img style="width:1866px" src="{{ person.profile_pic.url }}" /></a>
+                <a href="#"><img style="height:350px" src="{{ person.profile_pic.url }}" /></a>
               </figure>
               <h3 id="9d81f29d-0dfa-4160-bcec-103c35b289ff" class="block-color-gray_background" style="text-align: center;">General Information</h3><div id="3f64ac0c-d5d0-4d01-ba45-abbb90013b3e" class="column-list">
                 <div id="da1113a5-d2a1-41c2-9bb3-253459760d4b" style="width:37.5%" class="column">
@@ -94,6 +129,15 @@
                   </p>
                   <p id="4bfb5e34-0593-43e0-a1ca-bc9c3aeb869d" class="">
                     <strong>Status</strong>
+                  </p>
+                  <p id="e2a12494-ca5f-4d7c-bc69-346a31dfa0ff" class="">
+                    <strong>Pronoums</strong>
+                  </p>
+                  <p id="8a103764-716e-45f4-ba52-5125ca4cfa77" class="">
+                    <strong>Nationality</strong>
+                  </p>
+                  <p id="df4a3bd2-1aea-4ba6-9e36-a4cb9c797bda" class="">
+                    <strong>Age</strong>
                   </p>
                   <p id="cb8c8de1-0999-41ba-9519-857ad5d1d893" class="">
                     <strong>Occupation</strong>
@@ -105,50 +149,35 @@
                 <div id="ec955809-8566-40eb-b07e-70a060221c18" style="width:62.5%" class="column">
                   <p id="dbb0d120-b40d-4522-8189-44c9ecf6f85d" class="">{{ person.nickname }}</p>
                   <p id="7a40cd75-fdcc-4790-bf37-192bec7c10bd" class="">Alive 😀</p>
+                  <p id="f3aeabd6-1818-435d-b713-1e22ead15f26" class="">{{ person.pronoums }}</p>
+                  <p id="0e26eb2a-101c-4d82-91f8-440765d2e411" class="">{{ person.nationality }}</p>
+                  <p id="6ed8bd75-4780-4a3f-a237-096fce817f6a" class="">{{ person.age }}</p>
                   <p id="7c60b4b1-559e-413b-8a60-9c31a3c47ee1" class="">
                   {{ works.0.title }}
                   </p>
                   <p id="dabe8852-1d6b-44c2-9c8d-c1eae691027c" class="">{{ person.stack_text }}</p>
                 </div>
-              </div><h3 id="1aff2f3c-d0a6-49e9-98a2-3ea6a6d3866a" class="block-color-gray_background" style="text-align: center;">Characteristics</h3><div id="3bf72e60-85d5-4621-8da9-ea1d08c085a7" class="column-list">
-                <div id="58cf95bc-776e-4415-ab90-1c5b2e177c00" style="width:37.5%" class="column">
-                  <p id="e2a12494-ca5f-4d7c-bc69-346a31dfa0ff" class="">
-                    <strong>Pronoums</strong>
-                  </p>
-                  <p id="8a103764-716e-45f4-ba52-5125ca4cfa77" class="">
-                    <strong>Nationality</strong>
-                  </p>
-                  <p id="df4a3bd2-1aea-4ba6-9e36-a4cb9c797bda" class="">
-                    <strong>Age</strong>
-                  </p>
-                </div>
-                <div id="345898d0-7863-417b-9ef5-371ef1030def" style="width:62.5%" class="column">
-                  <p id="f3aeabd6-1818-435d-b713-1e22ead15f26" class="">{{ person.pronoums }}</p>
-                  <p id="0e26eb2a-101c-4d82-91f8-440765d2e411" class="">{{ person.nationality }}</p>
-                  <p id="6ed8bd75-4780-4a3f-a237-096fce817f6a" class="">{{ person.age }}</p>
-                </div>
               </div>
-              <h3 id="68c5181e-76ab-4ed4-9bdd-2494fe6f2870" class="block-color-gray_background" style="text-align: center;">Contact Me</h3>
-              <div id="defbe308-4256-4124-81e7-2030f9931c90" class="column-list">
-                  <div id="080d10c2-f995-4635-b6a6-f87c930581ab" style="width:37.5%" class="column">
-                    {% for contact in social_links %}
-                      <p id="aed76bb2-1968-4a76-ae12-17a8721d1672" class="">
-                        <strong>{{ contact.name }}</strong>
-                      </p>
-                    {% endfor %}
-                  </div>
-                  <div id="ca4aa35c-5b6b-47cc-a7ac-be7366b4413d" style="width:62.5%" class="column">
-                    {% for contact in social_links %}
-                      <p id="201cecb4-fa07-431a-9ba5-0b22a3202969" class=""> 
-                      {% if contact.url is not None %}
-                      <a href="{{ contact.url }}">{{ contact.username }}</a>
-                      {% else %}
-                      {{ contact.username }}
-                      {% endif %}
-                      </p>
-                    {% endfor %}
-                  </div>
-              </div><h3 id="awards" class="block-color-gray_background" style="text-align: center;">Awards</h3>
+              <h3 id="68c5181e-76ab-4ed4-9bdd-2494fe6f2870" class="block-color-gray_background" style="text-align: center;">Social Links</h3>
+              {% for contact in social_links %}
+                <div id="defbe308-4256-4124-81e7-2030f9931c90" class="column-list">
+                      <div id="080d10c2-f995-4635-b6a6-f87c930581ab" style="width:37.5%" class="column">
+                          <p id="aed76bb2-1968-4a76-ae12-17a8721d1672" class="" style="text-align: left;">
+                            <strong>{{ contact.name }}</strong>
+                          </p>
+                      </div>
+                      <div id="ca4aa35c-5b6b-47cc-a7ac-be7366b4413d" style="width:62.5%" class="column">
+                          <p id="201cecb4-fa07-431a-9ba5-0b22a3202969" class="" style="text-align: left; width: 196;"> 
+                          {% if contact.url is not None %}
+                          <a href="{{ contact.url }}" target="_blank">{{ contact.username }}</a>
+                          {% else %}
+                          {{ contact.username }}
+                          {% endif %}
+                          </p>
+                      </div>
+                </div>
+              {% endfor %}
+              <h3 id="awards" class="block-color-gray_background" style="text-align: center;">Awards</h3>
               <div id="26d7b0eb-3880-43a8-871a-0e373b9fe7e2" class="column-list">
                 <div id="f94c2cf5-d36c-4ad9-bc90-08d3619d45fa" style="width:37.5%" class="column">
                   {% for awrd in awards %}
