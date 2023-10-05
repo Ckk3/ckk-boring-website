@@ -124,9 +124,12 @@
 
             </div>
             <div style="width:25%" class="column">
-              <p class="block-color-red_background">
-                📄 <strong>Download PDF</strong>
-              </p><h3 class="block-color-gray_background" style="text-align: center;">{{ person.name }}</h3>
+              <a href="{% static 'pdfs/luisgustavo_en.pdf' %}" target="_blank">
+                <p class="block-color-red_background">
+                  📄 <strong>Download PDF</strong>
+                </p>
+              </a>
+              <h3 class="block-color-gray_background" style="text-align: center;">{{ person.name }}</h3>
               <figure class="image">
                 <a href="#"><img style="max-height:350px" src="{{ person.profile_pic.url }}" /></a>
               </figure>
