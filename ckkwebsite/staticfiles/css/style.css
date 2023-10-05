@@ -657,8 +657,12 @@ blockquote {
 	margin-right: 5px;
 }
 
-
-
+.proj-description{
+	margin-top: 1%; 
+	margin-left: 2%;
+	text-align: justify; 
+	text-justify: inter-word;
+}
 
 .work-description{
 	margin-top: 1%; 

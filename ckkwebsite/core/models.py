@@ -55,9 +55,12 @@ class Project(models.Model):
     short_description = models.CharField(max_length=40)
     year = models.IntegerField()
     image = models.ImageField(upload_to="images/")
+    is_favorite = models.BooleanField(default=False)
+    url = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self) -> str:
-        return self.name
+        favorite = "*FAVORITE*" if self.is_favorite else ""
+        return f"{self.name}  {favorite}"
 
 
 course_type_choices = (("BACHELOR", "Bachelor"), ("OTHER", "Other"))
