@@ -14,6 +14,9 @@ Create a python enviroment and install all requiriments with `pip install -r req
 
 Run `make dev` to raises a development server
 
+Create a admin user to change data
+`python manage.py createsuperuser`
+
 ## How deploy
 
 Run `docker compose up`, ngnix, postgres and django containers will be created.
@@ -31,3 +34,6 @@ Get backup data (Optional)
 
 If the server goes down just raise again with
 `make run`
+
+Create a admin user to change data
+`python manage.py createsuperuser`
