@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <html>
+    <body>
+      <article class="page sans">
+        <header>
+          <h1 class="page-title">{{ person.name }}</h1><p class="page-description"></p>
+        </header>
+        <div class="page-body">
+          <hr />
+          <div class="column-list">
+            <div style="width:74.99999999999999%" class="column">
+              <p class="">
+                <mark class="highlight-yellow_background">{{ person.name }}</mark> is a {{ person.description }}
+                Currenty working at {{ works.0.company_name }} as <i>{{ works.0.title }}</i>.
+              </p>
+              <p class=""></p>
+              <p class="">
+                <strong>Contents</strong>
+                <div class="indented">
+                  <div class="column-list">
+                    <div style="width:30%" class="column">
+                      <nav class="block-color-gray_background table_of_contents">
+                        <div class="table_of_contents-item table_of_contents-indent-0">
+                          <a class="table_of_contents-link" href="#fav_projects">Favorites Projects</a>
+                        </div>
+                        <div class="table_of_contents-item table_of_contents-indent-0">
+                          <a class="table_of_contents-link" href="#work_experience">Work Experience</a>
+                        </div>
+                        <div class="table_of_contents-item table_of_contents-indent-0">
+                          <a class="table_of_contents-link" href="#education">Education</a>
+                        </div>
+                        <div class="table_of_contents-item table_of_contents-indent-0">
+                          <a class="table_of_contents-link" href="#projects">Projects</a>
+                        </div>
+                        <div class="table_of_contents-item table_of_contents-indent-0">
+                          <a class="table_of_contents-link" href="#certificates">Certificates</a>
+                        </div>
+                        <div class="table_of_contents-item table_of_contents-indent-0">
+                          <a class="table_of_contents-link" href="#awards">Awards</a>
+                        </div>
+                      </nav>
+                      <p class=""></p>
+                    </div>
+                    <div style="width:68.75%" class="column">
+                      <p class=""></p>
+                    </div>
+                  </div>
+                </div>
+              </p>
+              <hr/><h2 id="fav_projects" class="">Favorites Projects</h2>
+              <div class="column-list">
+                {% for proj in projects %}
+                  {% if proj.is_favorite %}
+                    <div style="width:30%" class="column">
+                      <figure class="image">
+                        <a href="#projects">
+                          <img style="max-height: 310px" src="{{ proj.image.url }}"/>
+                          <figcaption >{{ proj.name }} ({{ proj.year }})</figcaption>
+                        </a>
+                      </figure>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <h2 id="work_experience" class="">Work Experience</h2>
+              {% for wrk in works %}
+                <h3 class="" style="font-weight: normal">{{ wrk }} <i>({{ wrk.start_date|date:"M, Y" }} -
+                {% if wrk.until_present %}
+                Present)
+                {% else %}
+                {{ wrk.end_date|date:"M, Y" }})
+                {% endif %}
+                </i>
+                </h3>
+                <div class="work-description">
+                {{ wrk.description }}
+                </div>
+              {% endfor %}
+              
+              <hr style="margin-top: 2%;"/><h2 id="education" class="">Education</h2>
+              {% for edu in educations %}
+                <h3 class="" style="font-weight: normal">{{ edu }} <i>({{ edu.start_date|date:"M, Y" }} -
+                {% if edu.until_present %}
+                Present)
+                {% else %}
+                {{ edu.end_date|date:"M, Y" }})
+                {% endif %}
+                </i>
+                </h3>
+                {{ edu.course_type }}
+                <ul class="bulleted-list">
+                  <li style="list-style-type:disc">{{ edu.description }}</li>
+                </ul>
+              {% endfor %}
+
+              <hr style="margin-top: 2%;"/>
+              <h2 id="projects" class="">Projects</h2>
+              {% for proj in projects %}
+                <h3 class="" style="font-weight: normal">{{ proj.name }} <i>({{ proj.year }})</i></h3>
+                {{ proj.short_description }}
+                <div class="proj-description">
+                  {{ proj.description }}
+                  <br>
+                  {% if proj.url is not None %}
+                    <a href="{{ proj.url }}" target="_blank">{{proj.url}}</a>
+                  {% endif %}
+                </div>
+                
+              {% endfor %}
+
+
+              <p class=""></p>
+              
+              <hr style="margin-top: 2%;"/>
+              <h2 id="certificates" class="">Certificates</h2>
+              {% for cert in certificates %}
+                <ul class="bulleted-list">
+                  <li style="list-style-type:disc">{{ cert.name }}, {{ cert.provider }} ({{ cert.year }})</li>
+                </ul>
+              {% endfor %}
+
+            </div>
+            <div style="width:25%" class="column">
+              <a href="{% static 'pdfs/luisgustavo_en.pdf' %}" target="_blank">
+                <p class="block-color-red_background">
+                  📄 <strong>Download PDF</strong>
+                </p>
+              </a>
+              <h3 class="block-color-gray_background" style="text-align: center;">{{ person.name }}</h3>
+              <figure class="image">
+                <img style="max-height:350px" src="{{ person.profile_pic.url }}" />
+              </figure>
+              <h3 class="block-color-gray_background" style="text-align: center;">General Information</h3><div class="column-list">
+                <div style="width:37.5%" class="column">
+                  <p class="">
+                    <strong>Nickname</strong>
+                  </p>
+                  <p class="">
+                    <strong>Pronoums</strong>
+                  </p>
+                  <p class="">
+                    <strong>Nationality</strong>
+                  </p>
+                  <p class="">
+                    <strong>Age</strong>
+                  </p>
+                  <p class="">
+                    <strong>Occupation</strong>
+                  </p>
+                  <p class="">
+                    <strong>Stack</strong>
+                  </p>
+                </div>
+                <div style="width:62.5%" class="column">
+                  <p class="">{{ person.nickname }}</p>
+                  <p class="">{{ person.pronoums }}</p>
+                  <p class="">{{ person.nationality }}</p>
+                  <p class="">{{ person.age }}</p>
+                  <p class="">
+                  {{ works.0.title }}
+                  </p>
+                  <p class="">{{ person.stack_text }}</p>
+                </div>
+              </div>
+              <h3 class="block-color-gray_background" style="text-align: center;">Social Links</h3>
+              {% for contact in social_links %}
+                <div class="column-list">
+                      <div style="width:37.5%" class="column">
+                          <p class="" style="text-align: left;">
+                            <strong>{{ contact.name }}</strong>
+                          </p>
+                      </div>
+                      <div style="width:62.5%" class="column">
+                          <p class="" style="text-align: left; width: 196;"> 
+                          {% if contact.url is not None %}
+                          <a href="{{ contact.url }}" target="_blank">{{ contact.username }}</a>
+                          {% else %}
+                          {{ contact.username }}
+                          {% endif %}
+                          </p>
+                      </div>
+                </div>
+              {% endfor %}
+              <h3 id="awards" class="block-color-gray_background" style="text-align: center;">Awards</h3>
+              <div class="column-list">
+                <div style="width:37.5%" class="column">
+                  {% for awrd in awards %}
+                    <p class="">
+                      <i>{{ awrd.year }}</i>
+                    </p>
+                  {% endfor %}
+                </div>
+                <div style="width:62.5%" class="column">
+                  {% for awrd in awards %}
+                    <p class="">
+                    {{ awrd.name }} 
+                    <br>
+                    <span style="font-size: 0.8rem;"><i>{{ awrd.provider }}</i></span>
+                    </p>
+                  {% endfor %}
+                </div>
+              </div>
+              <p class=""></p>
+            </div>
+          </div>
+          <p class=""></p>
+        </div>
+      </article>
+    </body>
+  </html>
+{% endblock %}
