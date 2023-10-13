@@ -23,6 +23,6 @@ jobs:
 
       - name: Get new changes, rebuild and run Docker Compose on VPS
         run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd /home/git/ckk-boring-website/ && git pull'
+          ssh -i ${{ secrets.VPS_SSH_KEY }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd /home/git/ckk-boring-website/ && git pull'
           ssh -i ${{ secrets.VPS_SSH_KEY }} ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "docker compose -f /home/git/ckk-boring-website/docker-compose.yml up -d --build"
           
