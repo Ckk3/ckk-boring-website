@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: SSH into VPS 
-        uses: easingthemes/ssh-deploy@main
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.VPS_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.VPS_HOST }}
-          REMOTE_USER: ${{ secrets.VPS_USERNAME }}
-          REMOTE_PORT: 22  
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
           SCRIPT_AFTER: |
             cd /home/git/ckk-boring-website/ && git pull
             docker compose -f /home/git/ckk-boring-website/docker-compose.yml up -d --build
