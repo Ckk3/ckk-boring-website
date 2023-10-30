@@ -12,7 +12,7 @@ sitemaps = {
 urlpatterns = [
     path("", views.homepage, name="homepage"),
     # SEO
-    # sitemapt
+    # sitemap
     path(
         "sitemap.xml",
         sitemap,
