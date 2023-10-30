@@ -6,6 +6,9 @@ Made with Django and PostgreSQL.
 
 Website: https://ckk3.dev
 
+## **IMPORTANT** FrontEnd
+FrontEnd was made using a notion wikipedia template, I've just made all necessary changes and fixes to use with django.
+Thanks to [u/pyrogoblin](https://www.reddit.com/user/pyrogoblin/) for [Wikipedia template in Notion](https://www.notion.so/colossal-cemetery-731/Wikipedia-Template-bd2e1ed1634c4727ae52dc8a80bf38b2 )
 
 ## How to develop
 
