@@ -16,11 +16,13 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY")
 
 ALLOWED_HOSTS = ["nginx"]
+CSRF_TRUSTED_ORIGINS = ["https://*.ckk3.dev", "nginx"]
 
 DEBUG = env("DEBUG", default=False)
 
 if DEBUG:
     ALLOWED_HOSTS.append("localhost")
+    CSRF_TRUSTED_ORIGINS.append("https://*.127.0.0.1")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
