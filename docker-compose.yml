@@ -47,6 +47,7 @@ services:
       - web
     networks:
       - ckkwebsite_network
+    restart: always
 
 networks:
   ckkwebsite_network:

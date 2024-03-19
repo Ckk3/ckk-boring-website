@@ -12,6 +12,12 @@ RUN pip install --upgrade pip
 
 COPY ./ckkwebsite /app
 
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+
+USER appuser
+
 RUN pip install -r requirements.txt
+
+RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000

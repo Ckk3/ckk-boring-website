@@ -4,9 +4,10 @@
 	"name": "Python 3 & PostgreSQL",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"workspaceFolder": "/workspaces/ckk-boring-website/ckkwebsite",
 	"forwardPorts": [5432],
-	"postCreateCommand": "pip install --user -r requirements.txt"
+	"onCreateCommand": "python manage.py migrate",
+	"postCreateCommand": "python manage.py collectstatic --noinput"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

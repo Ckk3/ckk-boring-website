@@ -20,9 +20,11 @@ CSRF_TRUSTED_ORIGINS = ["https://*.ckk3.dev", "nginx"]
 
 DEBUG = env("DEBUG", default=False)
 
-if DEBUG:
+if DEBUG is True:
     ALLOWED_HOSTS.append("localhost")
-    CSRF_TRUSTED_ORIGINS.append("https://*.127.0.0.1")
+    CSRF_TRUSTED_ORIGINS = ["https://*.127.0.0.1"]
+else:
+    CSRF_TRUSTED_ORIGINS = ["https://*.ckk3.dev", "nginx"]
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
