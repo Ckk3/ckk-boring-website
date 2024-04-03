@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 
 class Person(models.Model):
     name = models.CharField(max_length=30)
+    short_description = models.CharField(max_length=30)
     description = models.TextField()
     birthdate = models.DateField()
     nationality = models.CharField(max_length=30)
@@ -81,23 +82,33 @@ class Education(models.Model):
         return f"{self.course}, {self.institution_name}"
 
 
-award_type_choices = (("AWARD", "Award"), ("CERTIFICATE", "Certificate"))
-
-
 class Award(models.Model):
+    AWARD_TYPE_CHOICES = (("AWARD", "Award"), ("CERTIFICATE", "Certificate"))
+
     name = models.CharField(max_length=50)
     provider = models.CharField(max_length=50)
     year = models.IntegerField()
-    type = models.CharField(max_length=30, choices=award_type_choices)
+    type = models.CharField(max_length=30, choices=AWARD_TYPE_CHOICES)
 
     def __str__(self) -> str:
         return self.name
 
 
 class SocialLink(models.Model):
+    LINKEDIN_ICON = "LINKEDIN"
+    GITHUB_ICON = "GITHUB"
+    EMAIL_ICON = "EMAIL"
+
+    SOCIAL_LINK_ICON_CHOICES = (
+        (LINKEDIN_ICON, "icon-linkedin2"),
+        (GITHUB_ICON, "icon-github2"),
+        (EMAIL_ICON, "icon-email"),
+    )
+
     name = models.CharField(max_length=30)
     username = models.CharField(max_length=30, null=True)
     url = models.CharField(max_length=200, null=True, blank=True)
+    icon = models.CharField(max_length=30, choices=SOCIAL_LINK_ICON_CHOICES)
 
     def __str__(self) -> str:
         return self.name
