@@ -1,5 +1,0 @@
-django
-django-environ
-pillow
-psycopg2-binary
-gunicorn
