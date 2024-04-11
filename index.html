@@ -90,27 +90,54 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
-					<ul class="info">
-						<li><span class="first-block">Full Name:</span><span class="second-block">Louie Jie Mahusay</span></li>
-						<li><span class="first-block">Phone:</span><span class="second-block">+ 1235 2355 98</span></li>
-						<li><span class="first-block">Email:</span><span class="second-block">info@yoursite.com</span></li>
-						<li><span class="first-block">Website:</span><span class="second-block">www.yoursite.com</span></li>
-						<li><span class="first-block">Address:</span><span class="second-block">198 West 21th Street, Suite 721 New York NY 10016</span></li>
-					</ul>
-				</div>
-				<div class="col-md-8">
+				<div class="col-md-8 order-md-2">
+					<!-- Second column content -->
 					<h2>Hello There!</h2>
 					<p>There live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in bookmarksgrove there live the blind texts far from the countries.</p>
 					<p>Far far away, behind the word mountains, Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci there live the blind texts from the countries Vokalia and Consonantia, there live the blind texts. Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-					<p>
-						<ul class="fh5co-social-icons">
-							<li><a href="#"><i class="icon-twitter2"></i></a></li>
-							<li><a href="#"><i class="icon-facebook3"></i></a></li>
-							<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-							<li><a href="#"><i class="icon-dribbble2"></i></a></li>
-						</ul>
-					</p>
+					<ul class="fh5co-social-icons">
+						<li><a href="#"><i class="icon-twitter2"></i></a></li>
+						<li><a href="#"><i class="icon-facebook3"></i></a></li>
+						<li><a href="#"><i class="icon-linkedin2"></i></a></li>
+						<li><a href="#"><i class="icon-dribbble2"></i></a></li>
+					</ul>
+				</div>
+				<div class="col-md-4 order-md-1">
+					<!-- First column content -->
+					<ul class="info">
+						<li>
+							<span class="first-block">Name:</span>
+							<span class="second-block">Luis Gustavo Mota</span>
+						</li>
+						<li>
+							<span class="first-block">Pronoums:</span>
+							<span class="second-block">he/him</span>
+						</li>
+						<li>
+							<span class="first-block">Email:</span>
+							<span class="second-block" onclick="copyClipboard()">
+								<a href="mailto:contato.gustavomota@gmail.com" target="_blank">contato.gustavomota@gmail.com</a>
+							</span>
+						</li>
+						<li>
+							<span class="first-block">Github:</span>
+							<span class="second-block"> 
+								<a href="https://github.com/Ckk3" target="_blank">/Ckk3</a>
+							</span>
+						</li>
+						<li>
+							<span class="first-block">LinkedIn:</span>
+							<span class="second-block"> 
+								<a href="https://www.linkedin.com/in/luisgustavomota/" target="_blank">/luisgustavomota</a>
+							</span>
+						</li>
+						<li>
+							<span class="first-block">Address:</span>
+							<span class="second-block"> 
+								Caxias, Maranhão, Brazil
+							</span>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -655,6 +682,16 @@
 				$('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
 			});
 		});
+
+		function copyClipboard() {
+	
+
+			// Copy the text inside the text field
+			navigator.clipboard.writeText("asdasdasd");
+
+			// Alert the copied text
+			alert("Copied the text: " + copyText.value);
+		}
 	</script>
 
 	</body>
